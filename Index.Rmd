@@ -5,7 +5,7 @@ title: "Revisiting the benefits of active approaches for restoring damaged ecosy
 This site contains R code, data, and output from running code in support of:
 
 Larkin, D., Buck, R., Fieberg, J. and S. Galatowitsch.
-Revisiting the benefits of active approaches for restoring damaged ecosystems. *Submited to Proceedings of  the Royal Society B*.
+Revisiting the benefits of active approaches for restoring damaged ecosystems. *Submitted to Proceedings of  the Royal Society B*.
  
 You can download all files via the link below:
 
