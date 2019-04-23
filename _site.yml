@@ -1,0 +1,17 @@
+name: ProcB Comment
+output_dir: '.'
+navbar:
+  title: "Revisiting the benefits of active approaches for restoring
+damaged ecosystems"
+  left:
+  - text: Home
+    href: Index.html
+  - text: "Output from running code"
+    href: ESM_SupportingCode.html 
+    output:
+  html_document:
+    theme: flatly
+    lib_dir: site_libs
+    css: styles.css
+    self_contained: no
+
