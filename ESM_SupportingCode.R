@@ -693,8 +693,8 @@ gp7 <- ggplotGrob(p7)
 maxWidth = grid::unit.pmax(gp5$widths[2:5])
 gp5$widths[2:5] <- as.list(maxWidth)
 gp6$widths[2:5] <- as.list(maxWidth)
-#+ fig.height = 10
-#+ echo=FALSE
+
+#+ echo=FALSE, fig.height = 10
 grid.arrange(gp7, gp5, gp6, ncol=1, heights = c(1,3,3))
 
 #+ echo=FALSE
@@ -759,14 +759,14 @@ lmm.PA.Hab.or <- lmer(asinhResilience ~ PA + HabitatCat + (1 | Citation), data =
 #' ### PA-only models (JEA third model structure)
 #' 
 #' Complete data: PA highly significant
-#+ cache=TRUE
+#+ rma.PA, cache=TRUE
 Data = lat.rs
 Data$vi = 1
 rma.PA <- rma.mv(asinhResilience, vi, mods=~PA, random = list(~1|Citation), data = Data, method = "ML")
 rma.PA
 
 #' Outlier removal: PA moderately significant
-#+ cache=TRUE
+#+ rma.PA.or, cache=TRUE
 Data = lat.rs.or
 Data$vi = 1
 rma.PA.or <- rma.mv(asinhResilience, vi, mods=~PA, random = list(~1|Citation), data = Data, method = "ML")
@@ -777,7 +777,7 @@ rma.PA.or
 #' #### DisturbCat
 #' 
 #' Complete data: PA highly significant, DisturbCat n.s.
-#+ cache=TRUE
+#+ rma.PA.Dis, cache=TRUE, dependson=rma.PA
 Data = lat.rs
 Data$vi = 1
 rma.PA.Dis <- rma.mv(asinhResilience, vi, mods=~DisturbCat + PA, random = list(~1|Citation), data = Data, method = "ML")
@@ -785,7 +785,7 @@ rma.PA.Dis
 (rma.PA.Dis.anova <- anova(rma.PA, rma.PA.Dis)) #LRT for DisturbCat main effect
 
 #' Outlier removal: PA moderately significant, DisturbCat highly significant
-#+ cache=TRUE
+#+ rma.PA.Dis.or, cache=TRUE, dependson=rma.PA.or
 Data = lat.rs.or
 Data$vi = 1
 rma.PA.Dis.or <- rma.mv(asinhResilience, vi, mods=~DisturbCat + PA, random = list(~1|Citation), data = Data, method = "ML")
@@ -795,7 +795,7 @@ rma.PA.Dis.or
 #' #### HabitatCat
 #'
 #' Complete data: PA highly significant, HabitatCat marginally significant
-#+ cache=TRUE
+#+ rma.PA.Hab, cache=TRUE, dependson=rma.PA
 Data = lat.rs
 Data$vi = 1
 rma.PA.Hab <- rma.mv(asinhResilience, vi, mods=~HabitatCat + PA, random = list(~1|Citation), data = Data, method = "ML")
@@ -803,7 +803,7 @@ rma.PA.Hab
 (rma.PA.Hab.anova <- anova(rma.PA, rma.PA.Hab) )
 
 #' Outlier removal: PA moderately significant, DisturbCat highly significant
-#+ cache=TRUE
+#+ rma.PA.Hab.or, cache=TRUE, dependson=rma.PA.or
 Data = lat.rs.or
 Data$vi = 1
 rma.PA.Hab.or <- rma.mv(asinhResilience, vi, mods=~HabitatCat + PA, random = list(~1|Citation), data = Data, method = "ML")
@@ -815,14 +815,14 @@ rma.PA.Hab.or
 #' ### PA-only models (JEA third model structure)
 #' 
 #' Complete data: PA highly significant
-#+ cache=TRUE
+#+ rma.Lat.PA, cache=TRUE
 Data = lat.rs
 Data$vi = 1
 rma.Lat.PA <- rma.mv(asinhResilience, vi, mods=~PA, random = list(~1|absLat, ~1|Citation), data = Data, method = "ML")
 rma.Lat.PA
 
 #' Outlier removal: PA moderately significant
-#+ cache=TRUE
+#+ rma.Lat.PA.or, cache=TRUE
 Data = lat.rs.or
 Data$vi = 1
 rma.Lat.PA.or <- rma.mv(asinhResilience, vi, mods=~PA, random = list(~1|absLat, ~1|Citation), data = Data, method = "ML")
@@ -833,7 +833,7 @@ rma.Lat.PA.or
 #' #### DisturbCat
 #' 
 #' Complete data: PA highly significant, DisturbCat n.s.
-#+ cache=TRUE
+#+ rma.Lat.PA.Dis, cache=TRUE, dependson=rma.Lat.PA
 Data = lat.rs
 Data$vi = 1
 rma.Lat.PA.Dis <- rma.mv(asinhResilience, vi, mods=~DisturbCat + PA, random = list(~1|absLat, ~1|Citation), data = Data, method = "ML")
@@ -841,7 +841,7 @@ rma.Lat.PA.Dis
 (rma.Lat.PA.Dis.anova <- anova(rma.Lat.PA, rma.Lat.PA.Dis)) #LRT for DisturbCat main effect
 
 #' Outlier removal: PA moderately significant, DisturbCat highly significant
-#+ cache=TRUE
+#+ rma.Lat.PA.Dis.or, cache=TRUE, dependson=rma.Lat.PA.or
 Data = lat.rs.or
 Data$vi = 1
 rma.Lat.PA.Dis.or <- rma.mv(asinhResilience, vi, mods=~DisturbCat + PA, random = list(~1|absLat, ~1|Citation), data = Data, method = "ML")
@@ -851,7 +851,7 @@ rma.Lat.PA.Dis.or
 #' #### HabitatCat
 #'
 #' Complete data: PA highly significant, HabitatCat marginally significant
-#+ cache=TRUE
+#+ rma.Lat.PA.Hab, cache=TRUE, dependson=rma.Lat.PA
 Data = lat.rs
 Data$vi = 1
 rma.Lat.PA.Hab <- rma.mv(asinhResilience, vi, mods=~HabitatCat + PA, random = list(~1|absLat, ~1|Citation), data = Data, method = "ML")
@@ -859,7 +859,7 @@ rma.Lat.PA.Hab
 (rma.Lat.PA.Hab.anova <- anova(rma.Lat.PA, rma.Lat.PA.Hab) )
 
 #' Outlier removal: PA moderately significant, DisturbCat highly significant
-#+ cache=TRUE
+#+ rma.Lat.PA.Hab.or, cache=TRUE, dependson=rma.Lat.PA.or
 Data = lat.rs.or
 Data$vi = 1
 rma.Lat.PA.Hab.or <- rma.mv(asinhResilience, vi, mods=~HabitatCat + PA, random = list(~1|absLat, ~1|Citation), data = Data, method = "ML")
@@ -870,11 +870,9 @@ rma.Lat.PA.Hab.or
 #' 
 #' ### PA-only models (JEA third model structure)
 #' 
-#' Complete data: PA highly significant
-#+ cache=TRUE
 
 #' Errant outlier removal: 
-#+ cache=TRUE
+#+ rma.Lat.PA.or.err, cache=TRUE
 Data = lat.rs.or.manual
 Data$vi = 1
 rma.Lat.PA.or.err <- rma.mv(asinhResilience, vi, mods=~PA, random = list(~1|absLat, ~1|Citation), data = Data, method = "ML")
@@ -885,7 +883,7 @@ rma.Lat.PA.or.err
 #' #### DisturbCat
 #' 
 #' Errant outlier removal
-#+ cache=TRUE
+#+ rma.Lat.PA.Dis.or.err, cache=TRUE, dependson=rma.Lat.PA.or.err
 Data = lat.rs.or.manual
 Data$vi = 1
 rma.Lat.PA.Dis.or.err <- rma.mv(asinhResilience, vi, mods=~DisturbCat + PA, random = list(~1|absLat, ~1|Citation), data = Data, method = "ML")
@@ -895,7 +893,7 @@ rma.Lat.PA.Dis.or.err
 #' #### HabitatCat
 #' 
 #' Errant outlier removal
-#+ cache=TRUE
+#+ rma.Lat.PA.Hab.or.err, cache=TRUE, dependson=rma.Lat.PA.or.err
 Data = lat.rs.or.manual
 Data$vi = 1
 rma.Lat.PA.Hab.or.err <- rma.mv(asinhResilience, vi, mods=~HabitatCat + PA, random = list(~1|absLat, ~1|Citation), data = Data, method = "ML")
